@@ -10,6 +10,8 @@ const addTask = (evento) => {
     list.appendChild(task);
 }
 
+const taskList = [];
+
 const createTask = (evento) => {
     //Previene que se recargue la pagina
     evento.preventDefault();
@@ -26,6 +28,15 @@ const createTask = (evento) => {
     //Borramos el valor de input
     input.value = "";
     const taskContent = document.createElement("div")
+
+    const taskObj = {
+        value,
+        dateFormat,
+    }
+    
+    taskList.push(taskObj);
+    //Almacenamos nuuestra informacion en el sessionStorage. Se tiene que mandar todo en formato string
+    localStorage.setItem("tasks", JSON.stringify(taskList));
     //A taskContent le agregamos lo que retorna la funcion
     taskContent.appendChild(checkComplete());
     const titleTask = document.createElement("span");
